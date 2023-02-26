@@ -1,0 +1,12 @@
+<app-account-credentials
+  *ngIf="currentStep === 1"
+></app-account-credentials>
+
+<app-account-personal-info
+  *ngIf="currentStep === 2"></app-account-personal-info>
+
+<app-account-profile-data
+  *ngIf="currentStep === 3"></app-account-profile-data>
+
+<app-account-verify-email
+  *ngIf="currentStep === 4"></app-account-verify-email>

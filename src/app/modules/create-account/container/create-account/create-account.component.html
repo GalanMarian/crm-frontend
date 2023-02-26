@@ -1,0 +1,22 @@
+<div class="flex h-screen create__page">
+  <div class="page-image">
+    <img [src]="imageSrc" alt="" class="h-full w-full -mb-2" />
+  </div>
+  <div class="w-5 overflow-y-auto m-auto">
+
+    <app-volunteer-create-account
+    *ngIf="pageType=== 'volunteer'"
+    (emitImageSrc)="setImage($event)"
+    ></app-volunteer-create-account>
+
+    <app-ngo-create-account
+      *ngIf="pageType=== 'ngo'"
+    ></app-ngo-create-account>
+
+    <div class="bottom-tab-group" >
+      <div class="bottom-tab blue-color"></div>
+      <div class="bottom-tab blue-color"></div>
+      <div class="bottom-tab blue-color"></div>
+    </div>
+  </div>
+</div>
