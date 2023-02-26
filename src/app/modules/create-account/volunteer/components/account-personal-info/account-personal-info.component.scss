@@ -1,0 +1,293 @@
+$color-primary-500: #5583B9;
+$color-neutral-800: #233237;
+$color-neutral-200: #c0c0c0;
+$color-neutral-0: #ffffff;
+$input-placeholder-color: #767a7c;
+
+.right-div {
+  margin-top: 77px;
+  margin-left: 76px;
+  margin-right: 76px;
+}
+h1 {
+  font-family: Roboto, serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 42px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin-bottom: 48px;
+}
+i:hover {
+  cursor: pointer;
+}
+.image {
+  background: no-repeat;
+  width: 884px;
+  height: 982px;
+}
+.page2 {
+  display: flex;
+  flex-direction: row;
+  overflow: auto;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.first-and-last-name,
+.region-and-city {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 476px;
+  padding: 0px;
+  gap: 24px;
+}
+.first-name,
+.last-name,
+.gender,
+.date-of-birth,
+.city,
+.region,
+.phone-number {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+#firstName,
+#lastName {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px 16px;
+
+  width: 226px;
+  height: 40px;
+
+  background: $background-color;
+
+  border: 1px solid $color-neutral-200;
+  border-radius: 8px;
+  margin-left: 0px;
+}
+
+#gender,
+#dateOfBirth {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px 16px;
+
+  width: 476px;
+  height: 40px;
+
+  background: $background-color;
+
+  border: 1px solid $color-neutral-200;
+  border-radius: 8px;
+
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+  margin-left: 0px;
+}
+
+.p-button-danger:hover {
+  color: $background-color;
+  background: $color-primary-500;
+  border: 1px solid $color-primary-500;
+}
+.button {
+  margin-top: 16px;
+  margin-left: 1px;
+}
+
+.bottom-carousel-group {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+
+  .bottom-carousel {
+    width: 57px;
+    height: 4px;
+    border: 1px solid $color-neutral-200;
+    border-radius: 2px;
+    margin: 0 16px;
+    background: $color-neutral-200;
+  }
+
+  .orange-color {
+    border: 1px solid $color-primary-500;
+    background: $color-primary-500;
+  }
+}
+:host ::ng-deep {
+  .p-inputmask {
+    flex-grow: 1;
+    width: 476px;
+    height: 40px;
+    font-size: 15px;
+    background: $background-color;
+    border: none;
+    outline: none;
+    padding: 0.1rem;
+    font-family: 'Roboto';
+    font-style: normal;
+  }
+
+  .p-inputtext,
+  .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+    font-family: 'Roboto', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    color: $color-neutral-800;
+    padding-left: 8px;
+    /*  margin-left: 8px;*/
+  }
+}
+
+::placeholder {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 20px;
+  color: $input-placeholder-color;
+}
+
+.phone-number .prefix {
+  font-weight: 600;
+  font-size: 15px;
+  font-weight: bold;
+  font-family: 'Roboto';
+  font-style: normal;
+}
+
+.phone-number input {
+  flex-grow: 1;
+  width: 476px;
+  height: 40px;
+  font-size: 15px;
+  background: $background-color;
+  border: none;
+  outline: none;
+  padding: 0.1rem;
+  font-family: 'Roboto';
+  font-style: normal;
+}
+
+.prefix {
+  font-weight: 600;
+  font-size: 15px;
+  font-weight: bold;
+  font-family: 'Roboto';
+  font-style: normal;
+}
+.phone-box {
+  display: flex;
+  align-items: center;
+  background: $background-color;
+  width: 476px;
+  border: 1px solid $color-neutral-200;
+  border-radius: 8px;
+  padding-left: 0.9rem;
+  overflow: hidden;
+}
+
+.phone-box:focus-within {
+  border-color: $color-neutral-800;
+}
+
+:host ::ng-deep .p-inputmask:enabled:focus {
+  box-shadow: none;
+}
+
+#phone-number::placeholder {
+  color: $input-placeholder-color;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 20px;
+  width: 113px;
+  height: 20px;
+  font-family: 'Roboto';
+  font-style: normal;
+}
+
+:host
+::ng-deep
+.p-dropdown-panel
+.p-dropdown-items
+.p-dropdown-item:not(.p-highlight):not(.p-disabled):hover {
+  color: #495057;
+  background: $background-color;
+  border-radius: 4px;
+  width: 210px;
+}
+
+:host ::ng-deep .pi-times:before {
+  content: none;
+}
+
+:host ::ng-deep .p-dropdown {
+  width: 226px;
+  height: 40px;
+  border: 1px solid $color-neutral-200;
+  border-radius: 8px;
+}
+
+:host ::ng-deep .p-dropdown:hover {
+  border: 1px solid $input-placeholder-color;
+  border-radius: 4px;
+}
+
+:host ::ng-deep .p-dropdown:focus-within {
+  border-color: $color-neutral-800;
+}
+
+:host ::ng-deep .p-dropdown:not(.p-disabled).p-focus {
+  border-color: $color-neutral-800;
+  box-shadow: none;
+}
+
+.title {
+  color: $color-neutral-800;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2em;
+  line-height: auto;
+  text-align: left;
+  margin-top: 3%;
+  margin-bottom: 7%;
+}
+
+.p-button-danger {
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  width: 476px;
+  height: 48px;
+  padding: 12px 48px;
+  border-radius: 8px;
+  background: $color-primary-500;
+  border-color: $color-primary-500;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.create-account-button {
+  color: $background-color;
+  background: $color-primary-500;
+  border: none;
+}
+
+label {
+  margin-bottom: 4px;
+}

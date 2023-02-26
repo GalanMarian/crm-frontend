@@ -1,1 +1,105 @@
-<p>account-personal-info works!</p>
+<form
+  class="w-9 m-auto justify-content-center"
+  [formGroup]="formGroup"
+  (ngSubmit)="onSubmit()"
+  (keydown.enter)="$event.preventDefault()"
+>
+  <i class="pi pi-arrow-left" (click)="stepBack()"></i>
+
+  <h1 class="title">Create Account</h1>
+  <div class="field mt-1 first-and-last-name">
+    <div class="first-name p-input-filled">
+      <label class="block font-semibold" for="firstName"> First Name* </label>
+      <input type="text" id="firstName" disabled pInputText [placeholder]="volunteerData.firstName" />
+    </div>
+    <div class="last-name p-input-filled">
+      <label class="block font-semibold" for="lastName"> Last Name* </label>
+      <input type="text" id="lastName" disabled pInputText [placeholder]="volunteerData.lastName" />
+    </div>
+  </div>
+
+  <div class="field mt-1 date-of-birth p-input-filled">
+    <label class="block font-semibold" for="dateOfBirth"> Date of birth* </label>
+    <input
+      type="text"
+      id="dateOfBirth"
+      disabled
+      pInputText
+      [placeholder]="volunteerData.dateOfBirth"
+    />
+  </div>
+
+  <div class="field mt-1 gender p-input-filled">
+    <label class="block font-semibold" for="gender"> Gender* </label>
+    <input type="text" id="gender" disabled pInputText [placeholder]="volunteerData.gender" />
+  </div>
+
+  <div class="field mt-1 region-and-city">
+    <div class="region">
+      <label class="block font-semibold" for="region"> Region* </label>
+      <p-dropdown
+        #dropdownRegion
+        formControlName="region"
+        id="region"
+        class="dropdown"
+        [options]="regions"
+        [formControl]="formForFilters.controls.selectedRegion"
+        optionLabel="name"
+        optionValue="name"
+        placeholder="Select region"
+        [editable]="true"
+        (onChange)="selectRegion($event)"
+        (onFocus)="onFocusRegion()"
+        (onClick)="onClickRegion()"
+      >
+      </p-dropdown>
+      <div *ngIf="formGroup.controls['region'].errors?.['required']  && submitted">
+        <small id="region-error-message" class="p-error block">Please enter a region.</small>
+      </div>
+    </div>
+    <div class="city">
+      <label class="block font-semibold" for="city"> City* </label>
+      <p-dropdown
+        class="dropdown"
+        formControlName="city"
+        #dropdownCity
+        [formControl]="formForFilters.controls.selectedCity"
+        id="city"
+        [options]="cities"
+        placeholder="Select city"
+        optionLabel="name"
+        optionValue="name"
+        [editable]="true"
+        (onClick)="onClickCity()"
+        (onChange)="selectCity($event)"
+        (onFocus)="onFocusCity()"
+      >
+      </p-dropdown>
+      <div
+        *ngIf="(formGroup.controls['city'].errors?.['required']  && submitted) || (formGroup.controls['city'].disabled && submitted)"
+      >
+        <small id="city-error-message" class="p-error block">Please enter a city.</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="field mt-1 p-input phone-number">
+    <label class="block font-semibold" for="phone-number">Phone number*</label>
+    <div class="phone-box">
+      <span class="prefix">+40</span>
+      <p-inputMask id="phone-number" mask="999999999" formControlName="phoneNumber" slotChar="">
+      </p-inputMask>
+    </div>
+    <div *ngIf="formGroup.controls['phoneNumber'].errors?.['required']  && submitted">
+      <small id="phone-number-error-message" class="p-error block"
+      >Please enter a phone number.</small
+      >
+    </div>
+  </div>
+
+  <div class="button">
+    <button mat-flat-button type="submit" class="p-button-danger create-account-button">
+      Next Step
+    </button>
+  </div>
+</form>

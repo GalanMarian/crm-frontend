@@ -11,7 +11,7 @@ import {VolunteerCredentials} from "../../../models/volunteer/VolunteerCredentia
 })
 export class VolunteerCreateAccountComponent {
   @Output() emitImageSrc = new EventEmitter<string>();
-  currentStep: CreateAccountSteps = CreateAccountSteps.First;
+  currentStep: CreateAccountSteps = CreateAccountSteps.Second;
 
   ngAfterViewInit(): void {
     setTimeout(() => this.emitImageSrc.emit("assets/images/account-credentials.jpg"),0);

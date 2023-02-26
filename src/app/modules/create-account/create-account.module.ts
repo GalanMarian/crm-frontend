@@ -15,6 +15,8 @@ import {PasswordModule} from "primeng/password";
 import {CheckboxModule} from "primeng/checkbox";
 import {ReactiveFormsModule} from "@angular/forms";
 import {InputTextModule} from "primeng/inputtext";
+import {DropdownModule} from "primeng/dropdown";
+import {InputMaskModule} from "primeng/inputmask";
 
 
 
@@ -35,7 +37,9 @@ import {InputTextModule} from "primeng/inputtext";
     PasswordModule,
     CheckboxModule,
     ReactiveFormsModule,
-    InputTextModule
+    InputTextModule,
+    DropdownModule,
+    InputMaskModule
   ]
 })
 export class CreateAccountModule { }
