@@ -1,5 +1,8 @@
+import {VolunteerDataFromCnp} from "./VolunteerDataFromCNP";
+
 export interface VolunteerCredentials {
   email: string;
-  CNP: string;
+  cnp : string
+  cnpData: VolunteerDataFromCnp;
   password: string;
 }

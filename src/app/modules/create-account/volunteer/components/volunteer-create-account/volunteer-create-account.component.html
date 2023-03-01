@@ -1,9 +1,15 @@
 <app-account-credentials
   *ngIf="currentStep === 1"
+  [volunteerCredentials]="volunteerCredentials"
+  (emitVolunteerCredentials)="setVolunteerCredentials($event)"
 ></app-account-credentials>
 
 <app-account-personal-info
-  *ngIf="currentStep === 2"></app-account-personal-info>
+  *ngIf="currentStep === 2"
+  [volunteerInfo]="volunteerInfo"
+  [volunteerData]="getVolunteerDataFromCnp()"
+  (emitVolunteerInfo)="setVolunteerPersonalInfo($event)"
+  (goToAccountCredentialsStep)="goToAccountCredentialsStep()"></app-account-personal-info>
 
 <app-account-profile-data
   *ngIf="currentStep === 3"></app-account-profile-data>

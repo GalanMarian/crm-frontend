@@ -8,13 +8,13 @@
 
   <h1 class="title">Create Account</h1>
   <div class="field mt-1 first-and-last-name">
-    <div class="first-name p-input-filled">
+    <div class="first-name">
       <label class="block font-semibold" for="firstName"> First Name* </label>
-      <input type="text" id="firstName" disabled pInputText [placeholder]="volunteerData.firstName" />
+      <input type="text" id="firstName" formControlName="firstName" pInputText  />
     </div>
-    <div class="last-name p-input-filled">
+    <div class="last-name">
       <label class="block font-semibold" for="lastName"> Last Name* </label>
-      <input type="text" id="lastName" disabled pInputText [placeholder]="volunteerData.lastName" />
+      <input type="text" id="lastName" formControlName="lastName" pInputText />
     </div>
   </div>
 
@@ -42,10 +42,11 @@
         formControlName="region"
         id="region"
         class="dropdown"
+        scrollHeight="180px"
         [options]="regions"
         [formControl]="formForFilters.controls.selectedRegion"
-        optionLabel="name"
-        optionValue="name"
+        optionLabel="Name"
+        optionValue="Name"
         placeholder="Select region"
         [editable]="true"
         (onChange)="selectRegion($event)"
@@ -67,8 +68,8 @@
         id="city"
         [options]="cities"
         placeholder="Select city"
-        optionLabel="name"
-        optionValue="name"
+        optionLabel="Name"
+        optionValue="Name"
         [editable]="true"
         (onClick)="onClickCity()"
         (onChange)="selectCity($event)"

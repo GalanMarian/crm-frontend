@@ -7,14 +7,11 @@ import {Router} from "@angular/router";
   styleUrls: ['./create-account.component.scss']
 })
 export class CreateAccountComponent {
-  imageSrc : string | undefined ;
+  imageSrc : string | undefined = "/assets/images/volunteering.jpg" ;
   pageType: string;
 
   constructor(private router: Router ) {
         this.pageType= this.router.url.includes("volunteer") ? "volunteer" : "ngo";
-  }
-  ngOnInit() : void {
-    this.imageSrc = '/assets/images/volunteering.jpg';
   }
 
   setImage(imageSrc: string){

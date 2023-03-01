@@ -1,0 +1,52 @@
+*, *::after , *::before{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+$color-background: #f6f6f6;
+$background-color: #f6f6f6;
+$color-primary-500: #5583B9;
+$color-neutral-800: #233237;
+$color-neutral-200: #c0c0c0;
+$color-neutral-0: #ffffff;
+$input-placeholder-color: #767a7c;
+$terms-color: #379bd7;
+
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  height: 100%;
+  overflow: auto;
+  background-color: $color-background;
+
+  .main-bk-color {
+    background-color: #5583B9 !important;
+  }
+
+  .main-color {
+    color: #5583B9 !important;
+  }
+
+  .main-border-color {
+    border-color: #5583B9 !important;
+  }
+
+  .main-border-color-focused:focus,
+  .main-border-color-focused:hover {
+    border-color: #c0c0c0 !important;
+  }
+
+  .ng-invalid:not(form) {
+    border-color: #c0c0c0 !important;
+  }
+
+  .box-shadow:focus,
+  .box-shadow:hover {
+    box-shadow: none !important;
+  }
+}

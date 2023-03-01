@@ -1,5 +1,11 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {VolunteerApiService} from "../../../../../services/volunteer-api.service";
+import {VolunteerDataFromCnp} from "../../../models/volunteer/VolunteerDataFromCNP";
+import {VolunteerCredentials} from "../../../models/volunteer/VolunteerCredentials";
+import {UniqueCNPValidator} from "../../../../../validators/unique.cnp.validator";
+import {PasswordValidator} from "../../../../../validators/password.validator";
+import {MatchPasswords} from "../../../../../validators/match.passwords";
 
 @Component({
   selector: 'app-account-credentials',
@@ -7,7 +13,10 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./account-credentials.component.scss']
 })
 export class AccountCredentialsComponent {
+  @Output() emitVolunteerCredentials = new EventEmitter<VolunteerCredentials>();
+  @Input() volunteerCredentials: VolunteerCredentials | undefined;
   touch: { [key: string]: boolean } = {};
+  cnpData!: VolunteerDataFromCnp;
   validForm: boolean = true;
 
   formGroup: FormGroup = new FormGroup(
@@ -20,41 +29,39 @@ export class AccountCredentialsComponent {
             /^[_A-Za-z0-9-]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$/,
           ),
         ],
-        //Validators.composeAsync([UniqueEmailValidator.uniqueEmailValidator(this.emailService)]),
       ),
       CNP: new FormControl(
         '',
         [Validators.required, Validators.pattern(/^(\d{13})$/)],
 
-       /* Validators.composeAsync([
-          UniqueCNPValidator.cnpValidator(this.createPatientAccountApiService),
-        ]),*/
+        Validators.composeAsync([
+          UniqueCNPValidator.cnpValidator(this.volunteerApiService),
+        ]),
       ),
       password: new FormControl('', [
         Validators.required,
         Validators.minLength(8),
-        //PasswordValidator,
+        PasswordValidator,
       ]),
       confirmPassword: new FormControl('', Validators.required),
       termsAndConditions: new FormControl(false, Validators.requiredTrue),
     },
-    //{ validators: MatchPasswords },
+    { validators: MatchPasswords },
   );
 
   constructor(
-    // private emailService: EmailService,
-    // private createPatientAccountApiService: CreatePatientAccountApiService,
+    private volunteerApiService: VolunteerApiService,
   ) {}
 
   ngOnInit(): void {
-    /*if (this.patientCredentials !== undefined) {
+    if (this.volunteerCredentials !== undefined) {
       const formFields = this.formGroup.controls;
 
-      formFields['email'].setValue(this.patientCredentials.email);
-      formFields['CNP'].setValue(this.patientCredentials.CNP.cnp);
-      formFields['password'].setValue(this.patientCredentials.password);
-      formFields['confirmPassword'].setValue(this.patientCredentials.password);
-    }*/
+      formFields['email'].setValue(this.volunteerCredentials.email);
+      formFields['CNP'].setValue(this.volunteerCredentials.cnp);
+      formFields['password'].setValue(this.volunteerCredentials.password);
+      formFields['confirmPassword'].setValue(this.volunteerCredentials.password);
+    }
   }
 
   getMailErrorMessage(): string {
@@ -66,16 +73,11 @@ export class AccountCredentialsComponent {
         errorMessage = `Invalid e-mail address. Please enter your e-mail address in format: yourname@example.com`;
         break;
       }
-      case email?.errors?.hasOwnProperty('EmailUnique'): {
-        errorMessage = `This e-mail address is already associated with an account.`;
-        break;
-      }
       case email?.errors?.hasOwnProperty('required'): {
         errorMessage = `Please enter your e-mail address.`;
         break;
       }
     }
-
     return errorMessage;
   }
 
@@ -117,7 +119,7 @@ export class AccountCredentialsComponent {
       }
       case cnp?.errors?.hasOwnProperty('CNPExists'): {
         if (cnp?.errors?.['CNPExists'].hasOwnProperty('cnp')) {
-          //this.cnpData = cnp?.errors?.['CNPExists'];
+          this.cnpData = cnp?.errors?.['CNPExists'];
           this.formGroup.get('CNP')?.setErrors(null);
         }
 
@@ -140,11 +142,11 @@ export class AccountCredentialsComponent {
   }
 
   getConfirmMessageError(): string {
-    const confimrPassword = this.formGroup.get('confirmPassword');
+    const confirmPassword = this.formGroup.get('confirmPassword');
     let errorMessage: string = '';
 
     switch (true) {
-      case confimrPassword?.errors?.hasOwnProperty('required'): {
+      case confirmPassword?.errors?.hasOwnProperty('required'): {
         errorMessage = `Please confirm your password.`;
         break;
       }
@@ -161,7 +163,7 @@ export class AccountCredentialsComponent {
     const cnp = this.formGroup.get('CNP');
 
     if (cnp?.errors?.['CNPExists']?.hasOwnProperty('cnp')) {
-      //this.cnpData = cnp?.errors?.['CNPExists'];
+      this.cnpData = cnp?.errors?.['CNPExists'];
       this.formGroup.get('CNP')?.setErrors(null);
     }
 
@@ -177,12 +179,14 @@ export class AccountCredentialsComponent {
 
     const formFields = this.formGroup.controls;
 
-    /*this.patientCredentials = {
+
+    this.volunteerCredentials = {
       email: formFields['email'].value,
-      CNP: this.cnpData,
+      cnpData: this.cnpData,
+      cnp : formFields['CNP'].value,
       password: formFields['password'].value,
     };
 
-    this.emitPatientCredentials.emit(this.patientCredentials);*/
+    this.emitVolunteerCredentials.emit(this.volunteerCredentials);
   }
 }

@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PrivacyPolicyComponent } from './modules/legal/privacy-policy/privacy-policy.component';
 import { TermsOfServiceComponent } from './modules/legal/terms-of-service/terms-of-service.component';
+import { HttpClientModule } from '@angular/common/http';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { TermsOfServiceComponent } from './modules/legal/terms-of-service/terms-
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
